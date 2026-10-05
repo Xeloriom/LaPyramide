@@ -1,11 +1,35 @@
-Photos used by SECTION 07: REAL EXPERIENCE
+PHOTOS DU SITE — LA PYRAMIDE
+============================
 
-review-couple.webp
-Photographer: Nicolás Villalobos
-Source: https://www.pexels.com/photo/man-and-woman-sitting-at-the-table-9136558/
-Marked free to use on Pexels.
+Toutes les photos d'ambiance proviennent d'Unsplash et sont servies
+directement depuis images.unsplash.com.
 
-review-date.webp
-Photographer: Anastasiya Vragova
-Source: https://www.pexels.com/photo/young-elegant-couple-holding-hands-during-romantic-dinner-in-restaurant-6770737/
-Marked free to use on Pexels.
+Licence Unsplash : usage commercial autorisé, l'attribution est
+appréciée mais pas obligatoire.
+https://unsplash.com/license
+
+Identifiants en place (section -> identifiant Unsplash) :
+
+  02 Ambiance ............. photo-1781955781178-6ea29c66e860
+  04 Salon privé .......... photo-1574238919966-5cb3d9693a4b
+  05 Carte / Chicha ....... photo-1511302188604-d1d5ba206381
+  05 Carte / Le Bar ....... photo-1778104959337-5260c89e2293
+  05 Carte / Thé .......... photo-1555758933-42f41c02c82f
+  06 Réserver ............. photo-1681641092941-b1acee507ee0
+  07 Avis clients ......... photo-1790202557928-c341670f58f2
+
+ATTENTION — les mentions « Photo by … » affichées sur les cartes de la
+carte ont été retirées : elles nommaient encore les photographes des
+photos précédentes, donc une attribution fausse. Pour les rétablir, il
+faut retrouver l'auteur réel de chaque identifiant ci-dessus sur
+unsplash.com, puis remplir credit / creditHref dans dishList.
+
+Fichiers locaux, non liés à Unsplash :
+
+  review-couple.webp
+  Photographe : Nicolás Villalobos
+  https://www.pexels.com/photo/man-and-woman-sitting-at-the-table-9136558/
+
+  review-date.webp
+  Photographe : Anastasiya Vragova
+  https://www.pexels.com/photo/young-elegant-couple-holding-hands-during-romantic-dinner-in-restaurant-6770737/
