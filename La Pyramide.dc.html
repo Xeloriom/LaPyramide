@@ -236,7 +236,7 @@
   <img src="https://images.unsplash.com/photo-1681641092941-b1acee507ee0?auto=format&amp;fit=crop&amp;w=2600&amp;q=82" srcset="https://images.unsplash.com/photo-1681641092941-b1acee507ee0?auto=format&amp;fit=crop&amp;w=900&amp;q=82 900w, https://images.unsplash.com/photo-1681641092941-b1acee507ee0?auto=format&amp;fit=crop&amp;w=1400&amp;q=82 1400w, https://images.unsplash.com/photo-1681641092941-b1acee507ee0?auto=format&amp;fit=crop&amp;w=2000&amp;q=82 2000w, https://images.unsplash.com/photo-1681641092941-b1acee507ee0?auto=format&amp;fit=crop&amp;w=2600&amp;q=82 2600w" sizes="90vw" alt="Amis autour d'une chicha – ambiance du bar à chicha La Pyramide à Béziers" decoding="async" loading="lazy" style="position:absolute;inset:6% 5% 14%;width:90%;height:80%;-webkit-mask-image:radial-gradient(ellipse 70% 66% at 50% 50%,#000 45%,transparent 100%);mask-image:radial-gradient(ellipse 70% 66% at 50% 50%,#000 45%,transparent 100%);object-fit:cover;object-position:40% 50%;transform:scale({{ bookS }}) translateY({{ bookY }});filter:brightness(.66) contrast(1.04) saturate(.95);pointer-events:none;">
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,8,6,.55) 0%,rgba(13,8,6,0) 28%,rgba(13,8,6,.12) 58%,rgba(13,8,6,.7) 100%);pointer-events:none;"></div>
   <h2 style="position:relative;z-index:3;margin:0;padding:clamp(80px,13vh,180px) max(20px,2.3vw) 0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(60px,9.4vw,200px);line-height:.95;letter-spacing:-.035em;color:#fbf6ef;transform:translateX({{ bookTitleX }});opacity:{{ bookTitleO }};">Réserver</h2>
-  <form onSubmit="{{ onBook }}" style="position:relative;z-index:3;margin:0;display:grid;grid-template-columns:{{ bookCols }};gap:26px 2.4vw;align-items:end;padding:clamp(28px,4vh,52px) 3.6vw clamp(28px,4vh,48px);background:linear-gradient(180deg,#fbf5ec,#f2e7d8);border-top:1px solid rgba(246,238,228,.3);box-shadow:0 -30px 70px rgba(0,0,0,.5);">
+  <form onSubmit="{{ onBook }}" style="position:{{ bkPos }};z-index:3;right:{{ bkRight }};top:{{ bkTop }};transform:{{ bkTf }};width:{{ bkW }};margin:0;box-sizing:border-box;display:grid;grid-template-columns:{{ bookCols }};gap:{{ bkGap }};align-items:end;padding:{{ bkPad }};border-radius:{{ bkRadius }};border:{{ bkBorder }};background:linear-gradient(180deg,rgba(252,247,240,.72),rgba(242,231,216,.66));backdrop-filter:blur(26px) saturate(1.35);-webkit-backdrop-filter:blur(26px) saturate(1.35);box-shadow:{{ bkShadow }};">
     <label data-rv="0" style="display:flex;flex-direction:column;gap:12px;">
       <span style="font-size:clamp(11px,.78vw,14px);letter-spacing:.16em;text-transform:uppercase;color:rgba(26,16,11,.62);">Personnes</span>
       <span style="position:relative;display:block;border:1px solid rgba(26,16,11,.3);border-radius:10px;background:#fffdf9;transition:border-color .25s,box-shadow .25s;" style-hover="border-color:#e8541e;box-shadow:0 0 0 3px rgba(232,84,30,.16);">
@@ -619,7 +619,20 @@ class Component extends DCLogic {
       ritCols: m ? '1fr' : tb ? 'repeat(2,minmax(0,1fr))' : 'repeat(4,minmax(0,1fr))', ritAR: m ? 'auto' : '436/508', ritGapM: m ? '16px' : '', ritMinH: m ? '230px' : '260px', ritOff: tb ? '0px' : 'clamp(0px,12.6vw,260px)',
       embCols: tb ? 'minmax(0,1fr)' : 'auto minmax(0,1fr)', embGap: tb ? '56px' : '24px', embListOrder: tb ? 2 : 0, faceLeft: m ? '0%' : tb ? '20%' : '17%', embAlign: tb ? 'flex-start' : 'flex-end', faceW: m ? '100%' : tb ? '80%' : 'min(62vw,1000px)',
       specCols: m ? 'repeat(2,minmax(0,1fr))' : tb ? 'repeat(2,minmax(0,1fr))' : 'repeat(4,minmax(0,1fr))', cardMinH: m ? '230px' : '300px',
-      bookBtnJ: m ? 'start' : 'end', bookCols: m ? 'minmax(0,1fr)' : 'repeat(auto-fit,minmax(min(100%,200px),1fr))', bookBtnCol: m ? '1 / -1' : 'auto', bookBtnMt: m ? '8px' : '0',
+      bookBtnJ: 'start',
+      bkSide: !m && !tb,
+      bkPos: (!m && !tb) ? 'absolute' : 'static',
+      bkRight: (!m && !tb) ? '3.6vw' : 'auto',
+      bkTop: (!m && !tb) ? '50%' : 'auto',
+      bkTf: (!m && !tb) ? 'translateY(-50%)' : 'none',
+      bkW: (!m && !tb) ? 'min(410px,33vw)' : 'auto',
+      bkRadius: (!m && !tb) ? '20px' : '0',
+      bkPad: (!m && !tb) ? 'clamp(28px,3vh,38px) clamp(26px,2vw,34px)' : 'clamp(28px,4vh,52px) 3.6vw clamp(28px,4vh,48px)',
+      bkGap: (!m && !tb) ? '20px' : '26px 2.4vw',
+      bkBorder: (!m && !tb) ? '1px solid rgba(255,255,255,.55)' : '1px solid rgba(255,255,255,.4)',
+      bkShadow: (!m && !tb) ? '0 34px 90px rgba(0,0,0,.6)' : '0 -26px 70px rgba(0,0,0,.5)',
+      bookCols: (m || !tb) ? 'minmax(0,1fr)' : 'repeat(2,minmax(0,1fr))',
+      bookBtnCol: '1 / -1', bookBtnMt: (!m && !tb) ? '6px' : '8px',
       expPad: tb ? 'clamp(60px,10vh,120px) 0 24px 0' : 'clamp(140px,26vh,330px) 0 clamp(48px,6vh,72px) clamp(0px,12.4vw,250px)', expImgH: m ? '130vw' : tb ? '90vw' : '70vh',
       footAlign: m ? 'left' : 'center', footJ: m ? 'start' : 'end', footRight: m ? 'left' : 'right'
     };
