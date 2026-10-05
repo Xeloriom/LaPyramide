@@ -1,0 +1,433 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="./support.js"></script>
+  <!-- Chargement de Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="m-0 bg-[#120805]">
+<x-dc>
+  <helmet>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Cormorant+SC:wght@600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  </helmet>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background:#050201; }
+    .ref-section { position:relative; overflow:hidden; background:#050201; color:#f6eee4; }
+    .ref-media { position:absolute; inset:0; background-position:center; background-size:cover; background-repeat:no-repeat; }
+    .ref-vignette { position:absolute; inset:0; background:linear-gradient(90deg,rgba(3,2,1,.90) 0%,rgba(3,2,1,.38) 42%,rgba(3,2,1,.18) 65%,rgba(3,2,1,.72) 100%),linear-gradient(180deg,rgba(0,0,0,.58) 0%,transparent 32%,transparent 68%,rgba(0,0,0,.78) 100%); }
+    .ritual-card { position:absolute; width:min(21.7vw,430px); height:clamp(390px,40.2vh,510px); padding:clamp(22px,1.75vw,36px) clamp(20px,1.75vw,36px) clamp(24px,1.9vw,38px); border:0; background:rgba(8,7,6,.22); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); display:flex; flex-direction:column; justify-content:space-between; box-sizing:border-box; transition:background .35s ease,transform .8s cubic-bezier(.2,.75,.2,1); }
+    .ritual-card:hover { background:rgba(9,5,3,.34); }
+    .ritual-card .num { position:absolute; right:14px; top:3px; font:400 clamp(120px,10vw,190px)/1 Arial,sans-serif; color:rgba(246,238,228,.075); pointer-events:none; }
+    .ritual-card h3 { position:relative; z-index:2; margin:0; font:500 clamp(22px,1.65vw,30px)/1.1 'Cormorant Garamond',serif; color:#fbf6ef; }
+    .ritual-card p { position:relative; z-index:2; margin:0; max-width:330px; font:500 clamp(14px,.95vw,18px)/1.45 'DM Sans',sans-serif; color:rgba(246,238,228,.72); }
+    .ritual-1 { left:2.1%; top:27.7%; transform:translate3d(0,var(--r1,0px),0); }
+    .ritual-2 { left:25.6%; top:27.7%; transform:translate3d(0,var(--r2,0px),0); }
+    .ritual-3 { left:49.7%; top:47.8%; transform:translate3d(0,var(--r3,0px),0); }
+    .ritual-4 { left:74.3%; top:47.8%; transform:translate3d(0,var(--r4,0px),0); }
+    .ember-content { position:relative; z-index:4; width:min(100%,1450px); height:100vh; min-height:100vh; margin:auto; }
+    .ember-list { position:absolute; left:2.1%; top:50%; width:min(390px,29vw); transform:translateY(-50%); }
+    .ember-list::before { content:''; position:absolute; left:4px; top:4px; bottom:4px; width:1px; background:rgba(246,238,228,.16); }
+    .ember-list li { position:relative; display:flex; align-items:center; gap:30px; min-height:clamp(62px,8.35vh,105px); padding-left:0; color:rgba(246,238,228,.96); font:400 clamp(18px,1.45vw,28px)/1.2 'Bodoni Moda',serif; }
+    .ember-list li::before { content:''; position:relative; z-index:2; width:8px; height:8px; margin-left:0; border:1px solid rgba(246,238,228,.72); border-radius:50%; background:#090403; box-sizing:border-box; flex:none; }
+    .ember-title { position:absolute; right:3.2%; top:12.5%; margin:0; text-align:right; font:400 clamp(84px,9.3vw,184px)/.88 'Bodoni Moda',serif; letter-spacing:-.055em; color:#fbf6ef; }
+    .ember-copy { position:absolute; right:3.8%; bottom:10.5%; width:min(460px,25vw); text-align:left; }
+    .ember-copy p { margin:0 0 42px; font:400 clamp(16px,1.08vw,21px)/1.55 'DM Sans',sans-serif; color:rgba(246,238,228,.86); }
+    .ref-btn { display:inline-flex; align-items:center; gap:22px; color:#fbf6ef; font:500 clamp(14px,.95vw,19px)/1 'Bodoni Moda',serif; letter-spacing:.05em; text-transform:uppercase; text-decoration:none; }
+    .ref-btn span:last-child { width:58px; height:58px; border-radius:50%; background:#fff; color:#080504; display:grid; place-items:center; transition:transform .25s ease; }
+    .ref-btn:hover span:last-child { transform:scale(1.08); }
+    .special-wrap { position:relative; z-index:2; width:min(100%,1450px); margin:auto; }
+    .special-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+    .special-card { min-height:480px; position:relative; border:1px solid rgba(246,238,228,.11); background:rgba(9,5,3,.42); overflow:hidden; padding:25px; display:flex; flex-direction:column; justify-content:space-between; }
+    .special-card img { width:100%; height:330px; object-fit:cover; display:block; filter:saturate(.82) contrast(1.03); mix-blend-mode:screen; opacity:.82; }
+    .special-card h3 { margin:0; font:500 22px/1.1 'Cormorant Garamond',serif; color:#fbf6ef; }
+    .special-card p { margin:0; font:400 12px/1.5 'DM Sans',sans-serif; color:rgba(246,238,228,.48); }
+    .book-section { min-height:100vh; position:relative; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; }
+    .book-title { position:absolute; z-index:3; left:4.8%; top:9%; margin:0; font:400 clamp(68px,10vw,155px)/.82 'Cormorant Garamond',serif; letter-spacing:-.045em; color:#fbf6ef; }
+    .book-bar { position:relative; z-index:4; border-top:1px solid rgba(246,238,228,.12); background:rgba(6,3,2,.72); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); padding:24px 5%; }
+    .book-fields { width:min(100%,1450px); margin:auto; display:grid; grid-template-columns:repeat(4,1fr); }
+    .book-field { padding:4px 28px; border-right:1px solid rgba(246,238,228,.12); }
+    .book-field:first-child { padding-left:0; }
+    .book-field:last-child { border:0; text-align:right; padding-right:0; }
+    .book-field small { display:block; margin-bottom:10px; font:400 11px/1 'DM Sans',sans-serif; color:rgba(246,238,228,.43); letter-spacing:.14em; text-transform:uppercase; }
+    .book-field strong { font:500 13px/1 'DM Sans',sans-serif; color:#fbf6ef; letter-spacing:.11em; }
+    .experience { min-height:100vh; position:relative; display:flex; align-items:center; overflow:hidden; }
+    .experience-light { position:absolute; z-index:0; left:-6%; top:-15%; width:min(46vw,700px); aspect-ratio:1; pointer-events:none; mix-blend-mode:screen; opacity:.92; }
+    .experience-light img { display:block; width:100%; height:100%; object-fit:contain; }
+    .experience-grid { position:relative; z-index:1; width:min(100%,1450px); margin:auto; display:grid; grid-template-columns:1fr 1fr; gap:8%; align-items:center; }
+    .experience-left { position:relative; padding-left:2%; }
+    .experience-left { position:relative; z-index:1; padding-left:2%; }
+    .experience-rating { margin:0 0 clamp(48px,8vh,108px); font:400 18px/1 'DM Sans',sans-serif; color:#f6eee4; }
+    .experience-stars { margin-top:20px; color:#fff; font:400 29px/1 Arial,sans-serif; letter-spacing:.13em; }
+    .experience-quote { max-width:590px; margin:0; font:400 clamp(22px,2vw,34px)/1.55 'DM Sans',sans-serif; color:rgba(246,238,228,.94); }
+    .experience-author { margin-top:42px; font:400 clamp(13px,.95vw,18px)/1.3 'DM Sans',sans-serif; color:rgba(246,238,228,.42); }
+    .experience-right { position:relative; }
+    .experience-title { position:absolute; z-index:2; right:-3%; top:-16%; margin:0; text-align:right; font:400 clamp(68px,9vw,168px)/.82 'Bodoni Moda',serif; letter-spacing:-.055em; color:#fbf6ef; }
+    .experience-image { display:block; width:min(96%,660px); margin-left:auto; aspect-ratio:.64; object-fit:cover; filter:brightness(.82) contrast(1.06) saturate(.88); }
+    .footer-ref { min-height:72vh; border-top:1px solid rgba(246,238,228,.08); display:flex; flex-direction:column; justify-content:space-between; }
+    .footer-logo { margin:0; text-align:center; font:400 clamp(76px,14vw,220px)/.78 'Cormorant Garamond',serif; letter-spacing:-.055em; background:linear-gradient(90deg,#fbf6ef,#e88948,#b33b12); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    @media (max-width:900px){
+      .ritual-card{position:relative; left:auto;top:auto;width:calc(50% - 8px);height:330px;}
+      .ritual-grid-mobile{position:relative!important;display:flex!important;flex-wrap:wrap;gap:16px;padding:100px 20px;}
+      .ember-list{left:5%;top:50%;transform:translateY(-50%);}.ember-title{right:5%;top:8%;}.ember-copy{right:5%;bottom:8%;width:70%;}
+      .special-grid{grid-template-columns:repeat(2,1fr);}.special-card{min-height:390px;}.special-card img{height:260px;}
+      .book-fields{grid-template-columns:1fr 1fr;gap:20px;}.book-field:nth-child(2){border-right:0}.book-field:nth-child(3){padding-left:0}.book-field:last-child{text-align:left;padding-right:0;}
+      .experience-grid{position:relative;z-index:1;grid-template-columns:1fr;gap:70px}.experience-light{left:-16%;top:-4%;width:min(90vw,620px)}.experience-left{padding-top:70px}.experience-rating{margin-bottom:42px}.experience-right{padding-top:80px}.experience-title{right:0;top:0}.experience-image{width:80%;}
+    }
+    @media (max-width:620px){
+      .ritual-grid-mobile{display:grid!important;grid-template-columns:1fr!important;}.ritual-card{width:100%;height:300px;}.ember-title{font-size:68px}.ember-list{width:220px}.ember-copy{width:90%;}.special-grid{grid-template-columns:1fr}.book-title{font-size:70px}.book-fields{grid-template-columns:1fr}.book-field{border-right:0;border-bottom:1px solid rgba(246,238,228,.1);padding:14px 0}.book-field:last-child{border-bottom:0}.experience-image{width:92%;}.experience-title{font-size:68px}.experience-quote{font-size:22px}
+    }
+  </style>
+
+
+  <!-- SECTION HERO STICKY -->
+  <div class="relative w-full h-[220vh] bg-[#0c0604]">
+    <div class="sticky top-0 w-full h-screen overflow-hidden bg-[#1a0b05] text-[#f6eee4] font-['DM_Sans',sans-serif] flex flex-col pb-[22px]">
+
+      <!-- Arrière-plan flou & vidéo -->
+      <div class="absolute -inset-[60px] bg-[url('uploads/pasted-1791210055742-0.png')] bg-center bg-cover bg-no-repeat blur-[24px] scale-[1.06]" style="opacity:{{ bgOpacity }};"></div>
+
+      <sc-if value="{{ hasVideo }}" hint-placeholder-val="{{ false }}">
+        <video ref="{{ videoRef }}" src="{{ videoSrc }}" autoPlay="{{ true }}" muted="{{ true }}" onLoadedData="{{ onVideoReady }}" onCanPlay="{{ onVideoReady }}" loop="{{ true }}" playsInline="{{ true }}" class="absolute -inset-[40px] w-[calc(100%+80px)] h-[calc(100%+80px)] object-cover [transform:translateZ(0)]" style="filter:{{ videoFilter }};-webkit-filter:{{ videoFilter }};transform:translateZ(0) scale({{ videoScale }});"></video>
+      </sc-if>
+
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(25,8,2,0)_40%,rgba(20,6,2,.4)_100%)]"></div>
+      <div class="absolute inset-x-0 bottom-0 h-[30%] bg-[linear-gradient(180deg,rgba(18,7,3,0)_0%,rgba(18,7,3,.35)_100%)]"></div>
+      <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_62%_70%_at_50%_42%,rgba(6,3,2,0)_35%,rgba(6,3,2,.82)_100%),linear-gradient(180deg,rgba(6,3,2,.35)_0%,rgba(6,3,2,0)_25%,rgba(6,3,2,0)_60%,rgba(6,3,2,.85)_100%)]" style="opacity:{{ p }};"></div>
+
+      <!-- HEADER -->
+      <header class="relative shrink-0 h-[80px] grid grid-cols-[1fr_auto_1fr] items-center px-9 border-b border-[#f6eee4]/[0.14] font-['Cormorant_SC',serif] font-semibold text-[21px] tracking-[0.09em]">
+        <a href="#" class="justify-self-start hover:text-white transition-colors">MENU</a>
+        <a href="#" class="hover:text-white transition-colors">THE NOCTURNE</a>
+        <a href="#" class="justify-self-end flex items-center gap-[9px] hover:text-white transition-colors">
+          <svg width="17" height="14" viewBox="0 0 17 14" fill="#f6eee4"><path d="M8.5 2a6.5 6.5 0 0 1 6.5 7.5H2A6.5 6.5 0 0 1 8.5 2z"></path><rect x="0" y="11" width="17" height="2.5" rx="1"></rect><rect x="7.2" y="0" width="2.6" height="2.4" rx="1"></rect></svg>
+          RESERVE
+        </a>
+      </header>
+
+      <!-- CONTENT MAIN -->
+      <main class="relative flex-1 flex flex-col items-center justify-end gap-[clamp(20px,4.6vh,52px)] px-6 pt-[clamp(24px,8vh,120px)] pb-[clamp(16px,2vh,24px)]">
+        <div class="grid place-items-center">
+          <h1 class="[grid-area:1/1] m-0 text-center font-['Cormorant_Garamond',serif] font-medium text-[clamp(44px,min(11.2vw,16vh),190px)] leading-[0.92] tracking-[-0.015em] text-[#fbf6ef] text-balance" style="opacity:{{ o1 }};transform:translateY({{ y1 }});filter:blur({{ b1 }});">Where The City<br>Whispers</h1>
+          <h1 class="[grid-area:1/1] m-0 text-center font-['Cormorant_Garamond',serif] font-medium text-[clamp(44px,min(11.2vw,16vh),190px)] leading-[0.92] tracking-[-0.015em] text-[#fbf6ef] text-balance" style="opacity:{{ o2 }};transform:translateY({{ y2 }});filter:blur({{ b2 }});">No Rush.<br>Night Is Ours.</h1>
+        </div>
+        <a href="#" class="flex items-center gap-[18px] font-['Cormorant_Garamond',serif] font-semibold text-[25px] tracking-[-0.01em] hover:text-white transition-colors">
+          <span>BOOK A TABLE</span>
+          <span class="w-[49px] h-[49px] rounded-full bg-[#fbf6ef] flex items-center justify-center">
+            <svg width="15" height="12" viewBox="0 0 15 12" fill="none" stroke="#1a0b05" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h12M8.5 1.5 13 6l-4.5 4.5"></path></svg>
+          </span>
+        </a>
+      </main>
+
+      <!-- FOOTER HERO -->
+      <footer class="relative shrink-0 grid grid-cols-[1fr_auto_1fr] items-end gap-6 px-9 pb-3">
+        <!-- Widget Compte à rebours / Horloge -->
+        <div class="relative w-[336px] h-[clamp(136px,17vh,176px)] box-border border border-[#f6eee4]/[0.12] bg-[#140803]/[0.18] p-[clamp(14px,2.1vh,22px)_21px] flex flex-col justify-between">
+          <div class="flex flex-col gap-[9px]">
+            <div class="grid">
+              <div class="[grid-area:1/1] text-[15px] leading-normal font-medium w-[110px]" style="opacity:{{ o1 }};">Left to night menu</div>
+              <div class="[grid-area:1/1] self-start text-[15px] leading-normal font-normal text-[#f6eee4]/75 whitespace-nowrap" style="opacity:{{ o2 }};">Enjoy night menu</div>
+            </div>
+            <div class="grid">
+              <div class="[grid-area:1/1] text-[23px] tracking-[-0.01em] tabular-nums" style="opacity:{{ o1 }};">{{ countdown }}</div>
+              <div class="[grid-area:1/1] text-[23px] tracking-[-0.01em] tabular-nums" style="opacity:{{ o2 }};">{{ countdown2 }}</div>
+            </div>
+          </div>
+          <div class="grid text-[15px] font-medium">
+            <div class="[grid-area:1/1]" style="opacity:{{ o1 }};">We're almost there!</div>
+            <div class="[grid-area:1/1]" style="opacity:{{ o2 }};">Night is ours!</div>
+          </div>
+
+          <!-- Horloge SVG/Points -->
+          <div class="absolute right-[20px] top-1/2 -translate-y-1/2 w-[136px] h-[136px]">
+            <sc-for list="{{ dots }}" as="d" hint-placeholder-count="12">
+              <span class="absolute w-[5px] h-[5px] -mt-[2.5px] -ml-[2.5px] rounded-full border box-border" style="border-color:{{ d.border }};background:{{ d.fill }};left:{{ d.x }};top:{{ d.y }};"></span>
+            </sc-for>
+            <span class="absolute left-1/2 bottom-1/2 w-[1.5px] h-[38px] -ml-[0.75px] bg-[#f6eee4] origin-[50%_100%]" style="transform:{{ hourRot }};"></span>
+            <span class="absolute left-1/2 bottom-1/2 w-px h-[62px] -ml-[0.5px] bg-[#f6eee4]/85 origin-[50%_100%]" style="transform:{{ minRot }};"></span>
+            <span class="absolute left-1/2 bottom-1/2 w-[1.5px] h-[30px] -ml-[0.75px] bg-[#e8541e] origin-[50%_100%]" style="transform:{{ secRot }};opacity:{{ o2 }};"></span>
+            <span class="absolute left-1/2 top-1/2 w-[6px] h-[6px] -m-[3px] rounded-full" style="background:{{ pinColor }};"></span>
+          </div>
+        </div>
+
+        <div class="text-[14px] font-medium tracking-[0.16em] whitespace-nowrap pb-0">143RD AVENUE, LONDON</div>
+
+        <!-- Réseaux sociaux -->
+        <div class="justify-self-end flex items-center gap-[7px] pb-3">
+          <a href="#" class="w-[53px] h-[53px] border border-[#f6eee4]/[0.12] bg-[#140803]/25 flex items-center justify-center hover:bg-[#140803]/40 transition-colors">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#f6eee4" stroke-width="1.6"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5"></rect><circle cx="8" cy="8" r="3"></circle><circle cx="12" cy="4" r=".6" fill="#f6eee4"></circle></svg>
+          </a>
+          <a href="#" class="w-[53px] h-[53px] border border-[#f6eee4]/[0.12] bg-[#140803]/25 flex items-center justify-center hover:bg-[#140803]/40 transition-colors">
+            <svg width="17" height="15" viewBox="0 0 24 20" fill="none" stroke="#f6eee4" stroke-width="1.8" stroke-linejoin="round"><path d="M23 2.5a9.6 9.6 0 0 1-2.8.8 4.9 4.9 0 0 0 2.1-2.700 9.8 9.8 0 0 1-3.1 1.2A4.9 4.9 0 0 0 10.9 6 13.9 13.9 0 0 1 1.7 1.2a4.9 4.9 0 0 0 1.5 6.5A4.9 4.9 0 0 0 1 7.1a4.9 4.9 0 0 0 3.9 4.8 4.9 4.9 0 0 1-2.2.1 4.9 4.9 0 0 0 4.6 3.4A9.8 9.8 0 0 1 0 17.4 13.9 13.9 0 0 0 7.5 19.6c9 0 14-7.500 14-14v-.6A10 10 0 0 0 23 2.5z"></path></svg>
+          </a>
+          <a href="#" class="w-[53px] h-[53px] border border-[#f6eee4]/[0.12] bg-[#140803]/25 flex items-center justify-center hover:bg-[#140803]/40 transition-colors">
+            <svg width="16" height="15" viewBox="0 0 24 22" fill="none" stroke="#f6eee4" stroke-width="2" stroke-linejoin="round"><path d="M22.5 1.5 1.5 9.5l7.5 3 3 8 3.5-5.5 5.5 4z M9 12.5 22.5 1.5"></path></svg>
+          </a>
+          <span class="w-px h-[28px] bg-[#f6eee4]/[0.14] mx-[7px]"></span>
+          <a href="#" class="w-[53px] h-[53px] border border-[#f6eee4]/[0.12] bg-[#140803]/25 flex items-center justify-center hover:bg-[#140803]/40 transition-colors">
+            <svg width="15" height="14" viewBox="0 0 16 15" fill="none" stroke="#f6eee4" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 11V8a6.5 6.5 0 0 1 13 0v3"></path><rect x="1.5" y="9" width="3" height="5" rx="1"></rect><rect x="11.5" y="9" width="3" height="5" rx="1"></rect></svg>
+          </a>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- SECTION 02: SENSES -->
+  <section data-screen-label="02 Senses" class="relative w-full min-h-screen overflow-hidden bg-[#040202] text-[#f6eee4] font-['DM_Sans',sans-serif] grid grid-cols-1 md:grid-cols-2 items-center box-border px-[clamp(24px,4vw,64px)] py-[clamp(40px,6vh,80px)]">
+    <div class="absolute inset-y-0 left-0 w-[60%] pointer-events-none z-[1] flex items-center justify-start">
+      <img
+              src="uploads/spotlight.png"
+              alt="Spotlight"
+              class="w-full max-w-[820px] h-auto object-contain opacity-95 transition-transform duration-75 ease-out"
+              style="mix-blend-mode: screen; transform: translate3d(calc(-12% + {{ orbX }}), {{ orbY }}, 0);"
+      />
+    </div>
+
+    <div></div>
+
+    <div class="relative flex flex-col gap-[clamp(48px,11vh,124px)] pr-[clamp(0px,2vw,40px)] z-[2]">
+      <h2 class="m-0 font-['Cormorant_Garamond',serif] font-medium text-[clamp(44px,6.2vw,104px)] leading-[1.02] tracking-[-0.01em] text-[#fbf6ef] text-balance">Where Time Slows. And Senses Wake.</h2>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-[clamp(24px,3.4vw,52px)] max-w-[740px]">
+        <p class="m-0 text-base leading-[1.65] text-[#f6eee4]/60 text-pretty">Dining after dark is a ritual — a balance of mood, flavor, and light. Every detail moves like a scene: the cork’s sigh, the candle’s glow, the quiet drift of smoke.</p>
+        <p class="m-0 text-base leading-[1.65] text-[#f6eee4]/60 text-pretty">Each night is crafted to awaken the senses. Light and shadow, warmth and silence — forming a space that breathes after midnight.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 03: RITUAL CARDS / REFERENCE 01 -->
+  <section data-screen-label="03 Rituals" class="ref-section min-h-screen" style="--r1:{{ r1 }};--r2:{{ r2 }};--r3:{{ r3 }};--r4:{{ r4 }};">
+    <div class="ref-media" style="background-image:url('uploads/chicha.jpg');"></div>
+    <div class="ref-vignette"></div>
+
+    <div class="relative z-10 w-full min-h-screen ritual-grid-mobile">
+      <article class="ritual-card ritual-1">
+        <span class="num">1</span>
+        <h3>Night is ours</h3>
+        <p>Time slows. Conversations soften. Every pour, every plate moves to its own quiet rhythm.</p>
+      </article>
+      <article class="ritual-card ritual-2">
+        <span class="num">2</span>
+        <h3>Heat First</h3>
+        <p>The flame decides everything — sear, scent, smoke. What begins with heat ends in silence.</p>
+      </article>
+      <article class="ritual-card ritual-3">
+        <span class="num">3</span>
+        <h3>Silence Matters</h3>
+        <p>The hush between sounds is part of the ritual — the pause before the toast, the whisper after.</p>
+      </article>
+      <article class="ritual-card ritual-4">
+        <span class="num">4</span>
+        <h3>Bitter Is Honest</h3>
+        <p>Bitterness is truth, sweetness a memory — balance is the craft of the midnight kitchen.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- SECTION 04: THE EMBER ROOM / REFERENCE 02 -->
+  <section data-screen-label="04 Ember Room" class="ref-section min-h-screen flex items-center">
+    <div class="ref-media" style="background-image:url('uploads/woman.jpg');"></div>
+
+    <div class="ember-content">
+      <ul class="ember-list m-0 p-0 list-none">
+        <li>Intimate Tastings</li>
+        <li>Absinthe Rituals</li>
+        <li>Moonlit Dessert Pairings</li>
+        <li>Private Dinners</li>
+        <li>Vinyl Evenings</li>
+        <li>Candle Ceremonies</li>
+        <li>The Chef's Course</li>
+      </ul>
+
+      <h2 class="ember-title">The Ember<br>R<span class="inline-block">ø</span>m</h2>
+
+      <div class="ember-copy">
+        <p>Here, guests gather for quiet rituals — private tastings, absinthe ceremonies, and whispered conversations.</p>
+        <a href="#" class="ref-btn"><span>BOOK A ROOM</span><span><svg width="13" height="10" viewBox="0 0 15 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h12M8.5 1.5 13 6l-4.5 4.5"></path></svg></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 05: TONIGHT'S SPECIAL -->
+  <section data-screen-label="05 Tonight's Special" class="ref-section min-h-screen flex items-center px-[clamp(24px,4vw,64px)] py-20">
+    <div class="absolute inset-0 bg-[#040202]"></div>
+    <div class="absolute inset-0 opacity-40" style="background:radial-gradient(circle at 50% 45%,rgba(210,76,19,.16),transparent 48%);"></div>
+    <div class="special-wrap">
+      <div class="grid grid-cols-1 md:grid-cols-[1.5fr_.8fr] gap-10 items-end mb-16">
+        <h2 class="m-0 font-['Cormorant_Garamond',serif] text-[clamp(54px,8vw,130px)] leading-[.82] tracking-[-.045em] font-normal text-[#fbf6ef]">Tonight’s<br><span class="text-[#e37c3d]">Special</span></h2>
+        <p class="m-0 max-w-[390px] text-sm leading-[1.65] text-[#f6eee4]/55">Small plates designed to awaken the senses. Each dish combines warmth, contrast, and texture, setting the tone for the meal ahead.</p>
+      </div>
+      <div class="special-grid">
+        <article class="special-card"><div><img src="uploads/pasted-1791210055742-0.png" alt="Signature dish"></div><h3>Creamy Herb Chicken</h3></article>
+        <article class="special-card"><div class="h-[330px] grid place-items-center"><span class="font-['Cormorant_Garamond'] text-8xl text-[#f6eee4]/10">II</span></div><h3>Salmon with Lemon Mash</h3></article>
+        <article class="special-card"><div class="h-[330px] grid place-items-center"><span class="font-['Cormorant_Garamond'] text-8xl text-[#f6eee4]/10">III</span></div><h3>Roasted Chicken Medley</h3></article>
+        <article class="special-card"><div class="h-[330px] flex flex-col justify-center items-center gap-3 bg-[radial-gradient(circle,rgba(225,112,35,.28),transparent_65%)]"><span class="text-xs uppercase tracking-[.18em] text-[#f6eee4]/45">Unlocked after 12:00pm</span><span class="font-['Cormorant_Garamond'] text-7xl text-[#f6eee4]/15">IV</span></div><h3>Chef’s Secret Plate</h3></article>
+      </div>
+      <div class="flex justify-center mt-12"><a href="#" class="ref-btn"><span>LEARN MORE</span><span><svg width="13" height="10" viewBox="0 0 15 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h12M8.5 1.5 13 6l-4.5 4.5"></path></svg></span></a></div>
+    </div>
+  </section>
+
+  <!-- SECTION 06: BOOK A TABLE -->
+  <section data-screen-label="06 Book A Table" class="book-section bg-[#050201] text-[#f6eee4]">
+    <div class="absolute inset-0 z-0"><img src="uploads/pasted-1791210055742-0.png" alt="Cooking flame" class="w-full h-full object-cover object-center brightness-[.42] contrast-[1.16] saturate-[.9]"/><div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,2,1,.72),transparent_40%,rgba(5,2,1,.78))]"></div></div>
+    <h2 class="book-title">B<span class="text-[#e37c3d]">ø</span>k A Table</h2>
+    <div class="book-bar">
+      <div class="book-fields">
+        <div class="book-field"><small>Guests</small><strong>1 PERSON</strong></div>
+        <div class="book-field"><small>Date</small><strong>24-01-26</strong></div>
+        <div class="book-field"><small>Time</small><strong>00:00 AM</strong></div>
+        <div class="book-field"><a href="#" class="ref-btn"><span>BOOK A TABLE</span><span><svg width="13" height="10" viewBox="0 0 15 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h12M8.5 1.5 13 6l-4.5 4.5"></path></svg></span></a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 07: REAL EXPERIENCE -->
+  <section data-screen-label="07 Real Experience" class="experience ref-section px-[clamp(24px,5vw,80px)] py-20">
+    <div class="experience-light" aria-hidden="true"><img src="uploads/spotlight.png" alt="" /></div>
+    <div class="experience-grid">
+      <div class="experience-left">
+        <div class="experience-rating"><div>{{ reviewRating }}</div><div class="experience-stars" aria-label="5 stars">★★★★★</div></div>
+        <blockquote class="experience-quote">“{{ reviewText }}”</blockquote>
+        <div class="experience-author">{{ reviewAuthor }}</div>
+        <div class="flex gap-3 mt-10">
+          <button type="button" aria-label="Avis précédent" onclick="{{ previousReview }}" class="w-14 h-14 rounded-full border border-[#f6eee4]/20 bg-transparent text-[#f6eee4]/65 hover:border-[#f6eee4]/50 transition-colors">←</button>
+          <button type="button" aria-label="Avis suivant" onclick="{{ nextReview }}" class="w-14 h-14 rounded-full border border-[#f6eee4]/20 bg-transparent text-[#f6eee4]/85 hover:border-[#f6eee4]/50 transition-colors">→</button>
+        </div>
+      </div>
+      <div class="experience-right">
+        <h2 class="experience-title">Real<br>Experience</h2>
+        <img class="experience-image" src="{{ reviewImage }}" alt="{{ reviewAlt }}" />
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 08: FOOTER FINAL -->
+  <footer data-screen-label="08 Footer" class="footer-ref ref-section px-[clamp(24px,5vw,80px)] pt-14 pb-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-[11px] tracking-[.18em] uppercase text-[#f6eee4]/55">
+      <span>24-HOUR RESTAURANT</span><span class="md:text-center">143RD AVENUE, LONDON</span><span class="md:text-right">INSTAGRAM · X · TELEGRAM</span>
+    </div>
+    <div class="py-16 overflow-hidden"><h1 class="footer-logo">The N<span class="text-[#e37c3d]">ø</span>cturne</h1></div>
+    <div class="border-t border-[#f6eee4]/[.06] pt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-[10px] text-[#f6eee4]/35"><span>© 2026 THE NOCTURNE™</span><span>Cookie Policy</span><span>Terms &amp; Conditions</span><span class="md:text-right">Site by Phenomenon</span></div>
+  </footer>
+
+</x-dc>
+
+<script type="text/x-dc" data-dc-script data-props="{&quot;videoSrc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;uploads/cocktailBanner.mp4&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Vidéo de fond&quot;},&quot;bgBlur&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:28,&quot;min&quot;:0,&quot;max&quot;:60,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Vidéo de fond&quot;}}">
+  class Component extends DCLogic {
+    state = { left: 115, left2: 21599, p: 0, sy: 0, reviewIndex: 0 };
+    previousReview = () => this.setState(s => ({ reviewIndex: (s.reviewIndex + 2) % 3 }));
+    nextReview = () => this.setState(s => ({ reviewIndex: (s.reviewIndex + 1) % 3 }));
+    onScroll = () => {
+      const sy = typeof window !== 'undefined' ? window.scrollY : 0;
+      const vh = typeof window !== 'undefined' ? window.innerHeight : 800;
+      const p = Math.max(0, Math.min(1, sy / (vh * 0.9)));
+      if (Math.abs(p - this.state.p) > 0.002 || p === 0 || p === 1 || Math.abs(sy - this.state.sy) > 2) {
+        this.setState({ p, sy });
+      }
+    };
+    videoRef = (el) => {
+      if (!el || el === this._v) return;
+      this._v = el;
+      el.loop = true; el.setAttribute('loop', '');
+      el.addEventListener('ended', () => { el.currentTime = 0; el.play().catch(() => {}); });
+      el.muted = true; el.defaultMuted = true; el.setAttribute('muted', ''); el.setAttribute('playsinline', ''); el.setAttribute('webkit-playsinline', ''); el.setAttribute('autoplay', ''); el.playsInline = true; el.autoplay = true;
+      el.addEventListener('pause', () => { if (!document.hidden) setTimeout(() => el.play().catch(() => {}), 50); });
+      el.addEventListener('timeupdate', () => { if (el.duration && el.currentTime > el.duration - 0.25) { el.currentTime = 0; el.play().catch(() => {}); } });
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) el.play().catch(() => {}); });
+      ['touchstart','click','scroll'].forEach(ev => window.addEventListener(ev, () => el.paused && el.play().catch(() => {}), { passive: true }));
+      const go = () => el.play().catch(() => {});
+      go(); el.addEventListener('canplay', go, { once: true });
+    };
+    onVideoReady = (e) => { const v = e.target; v.muted = true; if (v.paused) v.play().catch(() => {}); };
+    componentDidMount() {
+      this._kick = () => { if (this._v && this._v.paused) this._v.play().catch(() => {}); };
+      window.addEventListener('pointerdown', this._kick);
+      this._kt = setInterval(this._kick, 1500);
+      this.t = setInterval(() => this.setState(s => ({ left: s.left > 0 ? s.left - 1 : 115, left2: s.left2 > 0 ? s.left2 - 1 : 21599 })), 1000);
+      window.addEventListener('scroll', this.onScroll, { passive: true });
+      this.onScroll();
+    }
+    componentDidUpdate() { const v = this._v; if (v && v.paused) v.play().catch(() => {}); }
+    loadBlob(src) {
+      if (this._src === src) return; this._src = src;
+      if (!src || /^https?:/.test(src)) { this.setState({ blobUrl: null }); return; }
+      fetch(src).then(r => r.blob()).then(b => { if (this._src !== src) return; if (this._blob) URL.revokeObjectURL(this._blob); this._blob = URL.createObjectURL(b); this.setState({ blobUrl: this._blob }); }).catch(() => {});
+    }
+    componentWillUnmount() { if (this._blob) URL.revokeObjectURL(this._blob); clearInterval(this.t); clearInterval(this._kt); window.removeEventListener('pointerdown', this._kick); window.removeEventListener('scroll', this.onScroll); }
+    renderVals() {
+      const reviews = [
+        {
+          rating: '5 / 5',
+          text: 'Stepping into The Nocturne felt like crossing into another world. The lighting, the music, even the silence between songs — everything was perfectly tuned to the night. It wasn’t just dinner, it was an experience that lingered long after we left.',
+          author: '— Clara M. · Design Director, New York',
+          image: 'uploads/woman.jpg',
+          alt: 'Guest enjoying a candlelit dinner'
+        },
+        {
+          rating: '5 / 5',
+          text: 'We came for one drink and stayed all night. Every course felt considered, and the room had its own kind of magic.',
+          author: '— Guest review · London',
+          image: 'uploads/review-couple.webp',
+          alt: 'Couple sharing a quiet dinner in a dimly lit restaurant'
+        },
+        {
+          rating: '5 / 5',
+          text: 'A beautiful evening from the first candle to the last glass. Warm service, thoughtful food, and a soundtrack worth remembering.',
+          author: '— Guest review · London',
+          image: 'uploads/review-date.webp',
+          alt: 'Couple sharing dinner by candlelight'
+        }
+      ];
+      const review = reviews[this.state.reviewIndex];
+      const s = this.state.left, p = n => String(n).padStart(2, '0');
+      const P = this.state.p, ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      const t1 = ease(Math.max(0, Math.min(1, (P - 0.15) / 0.5))), t2 = ease(Math.max(0, Math.min(1, (P - 0.4) / 0.5)));
+      const baseBlur = this.props.bgBlur ?? 28, lerp = (a, b, t) => a + (b - a) * t, g = ease(P);
+      const s2 = this.state.left2;
+      const dots = Array.from({ length: 12 }, (_, i) => {
+        const a = (i / 12) * 2 * Math.PI;
+        const on = i <= 7 ? Math.max(0, Math.min(1, (P - 0.35 - i * 0.06) / 0.12)) : 0;
+        return { x: (50 + 48 * Math.sin(a)) + '%', y: (50 - 48 * Math.cos(a)) + '%', fill: `rgba(232,84,30,${on})`, border: on > 0.5 ? '#e8541e' : 'rgba(246,238,228,.28)' };
+      });
+      const el = 115 - s;
+      setTimeout(() => this.loadBlob(this.props.videoSrc || 'uploads/cocktailBanner.mp4'), 0);
+      const clips = { 'Barman shaker': 4174, 'Barman cocktail': 4173, 'Barman shots': 790, 'Bar animé': 4043 };
+      const id = clips[this.props.clip ?? 'Barman shaker'] ?? 4174;
+      const videoSrc = this.props.videoSrc || (this.props.clip ? `https://assets.mixkit.co/videos/${id}/${id}-720.mp4` : 'uploads/cocktailBanner.mp4');
+
+      const vh = typeof window !== 'undefined' ? window.innerHeight : 800;
+      const progressS2 = Math.max(-1, Math.min(1, ((this.state.sy || 0) - vh * 1.2) / vh));
+
+      return {
+        reviewRating: review.rating, reviewText: review.text, reviewAuthor: review.author,
+        reviewImage: review.image, reviewAlt: review.alt,
+        previousReview: this.previousReview, nextReview: this.nextReview,
+        videoSrc: this.state.blobUrl || (/^https?:/.test(videoSrc) ? videoSrc : ''), hasVideo: !!(this.state.blobUrl || /^https?:/.test(videoSrc)), videoRef: this.videoRef, onVideoReady: this.onVideoReady,
+        p: g, bgOpacity: 1 - g,
+        orbX: (progressS2 * 25).toFixed(1) + 'px',
+        orbY: (progressS2 * -45).toFixed(1) + 'px',
+        videoFilter: `blur(${lerp(baseBlur, 1.5, g).toFixed(1)}px) contrast(${lerp(1.45, 1.2, g).toFixed(2)}) brightness(${lerp(.72, .8, g).toFixed(2)}) saturate(${lerp(1.05, 1.15, g).toFixed(2)})`,
+        videoScale: lerp(1, 1.04, g).toFixed(3),
+        o1: 1 - t1, y1: (-t1 * 40) + 'px', b1: (t1 * 8).toFixed(1) + 'px',
+        o2: t2, y2: ((1 - t2) * 40) + 'px', b2: ((1 - t2) * 8).toFixed(1) + 'px',
+        countdown2: `${p(Math.floor(s2 / 3600))}:${p(Math.floor(s2 / 60) % 60)}:${p(s2 % 60)}`,
+        secRot: `rotate(${(s2 % 60) * -6 + 180}deg)`,
+        pinColor: g > .5 ? '#e8541e' : '#d9a441',
+        countdown: `00:${p(Math.floor(s / 60))}:${p(s % 60)}`,
+        dots,
+        hourRot: `rotate(${lerp(-32 + el * 0.05, 8, g)}deg)`,
+        minRot: `rotate(${lerp(118 + el * 0.6, 238, g)}deg)`,
+        r1: `${Math.sin(P * Math.PI) * -10}px`,
+        r2: `${Math.sin(P * Math.PI) * 7}px`,
+        r3: `${Math.sin(P * Math.PI) * -5}px`,
+        r4: `${Math.sin(P * Math.PI) * 9}px`
+      };
+    }
+  }
+</script>
+</body>
+</html>
