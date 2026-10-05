@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="La Pyramide">
+  <defs>
+    <linearGradient id="lit" x1="0" y1="1" x2=".6" y2="0">
+      <stop offset="0" stop-color="#b33b12"/><stop offset=".55" stop-color="#e8541e"/><stop offset="1" stop-color="#f6c072"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="1" y1="1" x2=".3" y2="0">
+      <stop offset="0" stop-color="#3a1a0c"/><stop offset="1" stop-color="#8a3a14"/>
+    </linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".82" r=".6">
+      <stop offset="0" stop-color="#e8541e" stop-opacity=".55"/><stop offset="1" stop-color="#e8541e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="13" fill="#0a0807"/>
+  <ellipse cx="32" cy="50" rx="26" ry="13" fill="url(#glow)"/>
+  <path d="M32 9 10 50h22z" fill="url(#lit)"/>
+  <path d="M32 9 54 50H32z" fill="url(#shade)"/>
+  <path d="M32 9v41" stroke="#fbf6ef" stroke-opacity=".3" stroke-width="1.1"/>
+  <path d="M8 52.6h48" stroke="#fbf6ef" stroke-opacity=".22" stroke-width="2" stroke-linecap="round"/>
+</svg>

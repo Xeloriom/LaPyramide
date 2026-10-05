@@ -1,0 +1,17 @@
+{
+  "name": "La Pyramide – Bar à chicha, Béziers",
+  "short_name": "La Pyramide",
+  "description": "Chicha bar au 22 rue Victor Hugo, Béziers. Chichas signatures, mocktails maison, salon privé.",
+  "lang": "fr-FR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0a0807",
+  "theme_color": "#0a0807",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

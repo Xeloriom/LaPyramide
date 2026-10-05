@@ -1,0 +1,10 @@
+# robots.txt — La Pyramide, bar à chicha à Béziers
+# https://xeloriom.github.io/LaPyramide/
+
+User-agent: *
+Allow: /
+Disallow: /scraps/
+Disallow: /The%20Nocturne.dc.html
+Disallow: /La%20Pyramide.dc.html
+
+Sitemap: https://xeloriom.github.io/LaPyramide/sitemap.xml
