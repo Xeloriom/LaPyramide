@@ -236,35 +236,35 @@
   <img src="https://images.unsplash.com/photo-1681641092941-b1acee507ee0?auto=format&amp;fit=crop&amp;w=2600&amp;q=82" srcset="https://images.unsplash.com/photo-1681641092941-b1acee507ee0?auto=format&amp;fit=crop&amp;w=900&amp;q=82 900w, https://images.unsplash.com/photo-1681641092941-b1acee507ee0?auto=format&amp;fit=crop&amp;w=1400&amp;q=82 1400w, https://images.unsplash.com/photo-1681641092941-b1acee507ee0?auto=format&amp;fit=crop&amp;w=2000&amp;q=82 2000w, https://images.unsplash.com/photo-1681641092941-b1acee507ee0?auto=format&amp;fit=crop&amp;w=2600&amp;q=82 2600w" sizes="90vw" alt="Amis autour d'une chicha – ambiance du bar à chicha La Pyramide à Béziers" decoding="async" loading="lazy" style="position:absolute;inset:6% 5% 14%;width:90%;height:80%;-webkit-mask-image:radial-gradient(ellipse 70% 66% at 50% 50%,#000 45%,transparent 100%);mask-image:radial-gradient(ellipse 70% 66% at 50% 50%,#000 45%,transparent 100%);object-fit:cover;object-position:40% 50%;transform:scale({{ bookS }}) translateY({{ bookY }});filter:brightness(.66) contrast(1.04) saturate(.95);pointer-events:none;">
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,8,6,.55) 0%,rgba(13,8,6,0) 28%,rgba(13,8,6,.12) 58%,rgba(13,8,6,.7) 100%);pointer-events:none;"></div>
   <h2 style="position:relative;z-index:3;margin:0;padding:clamp(80px,13vh,180px) max(20px,2.3vw) 0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(60px,9.4vw,200px);line-height:.95;letter-spacing:-.035em;color:#fbf6ef;transform:translateX({{ bookTitleX }});opacity:{{ bookTitleO }};">Réserver</h2>
-  <form onSubmit="{{ onBook }}" style="position:{{ bkPos }};z-index:3;right:{{ bkRight }};top:{{ bkTop }};transform:{{ bkTf }};width:{{ bkW }};margin:0;box-sizing:border-box;display:grid;grid-template-columns:{{ bookCols }};gap:{{ bkGap }};align-items:end;padding:{{ bkPad }};border-radius:{{ bkRadius }};border:{{ bkBorder }};background:linear-gradient(180deg,rgba(252,247,240,.72),rgba(242,231,216,.66));backdrop-filter:blur(26px) saturate(1.35);-webkit-backdrop-filter:blur(26px) saturate(1.35);box-shadow:{{ bkShadow }};">
+  <form onSubmit="{{ onBook }}" style="position:{{ bkPos }};z-index:3;right:{{ bkRight }};top:{{ bkTop }};transform:{{ bkTf }};width:{{ bkW }};margin:0;box-sizing:border-box;display:grid;grid-template-columns:{{ bookCols }};gap:{{ bkGap }};align-items:end;padding:{{ bkPad }};border-radius:{{ bkRadius }};border:{{ bkBorder }};background:rgba(246,238,228,.09);backdrop-filter:blur(26px) saturate(1.25);-webkit-backdrop-filter:blur(26px) saturate(1.25);box-shadow:{{ bkShadow }};">
     <label data-rv="0" style="display:flex;flex-direction:column;gap:12px;">
-      <span style="font-size:clamp(11px,.78vw,14px);letter-spacing:.16em;text-transform:uppercase;color:rgba(26,16,11,.62);">Personnes</span>
-      <span style="position:relative;display:block;border:1px solid rgba(26,16,11,.3);border-radius:10px;background:#fffdf9;transition:border-color .25s,box-shadow .25s;" style-hover="border-color:#e8541e;box-shadow:0 0 0 3px rgba(232,84,30,.16);">
-        <select value="{{ guests }}" onChange="{{ setGuests }}" style="appearance:none;-webkit-appearance:none;color-scheme:light;width:100%;background:transparent;border:0;outline:0;color:#1a100b;font-family:'DM Sans',sans-serif;font-size:clamp(15px,1.05vw,20px);letter-spacing:.06em;padding:15px 46px 15px 16px;cursor:pointer;">
+      <span style="font-size:clamp(11px,.78vw,14px);letter-spacing:.16em;text-transform:uppercase;color:rgba(246,238,228,.8);">Personnes</span>
+      <span style="position:relative;display:block;border:1px solid rgba(246,238,228,.5);border-radius:10px;background:rgba(246,238,228,.13);transition:border-color .25s,box-shadow .25s;" style-hover="border-color:#e8541e;box-shadow:0 0 0 3px rgba(232,84,30,.22);">
+        <select value="{{ guests }}" onChange="{{ setGuests }}" style="appearance:none;-webkit-appearance:none;color-scheme:dark;width:100%;background:transparent;border:0;outline:0;color:#fbf6ef;font-family:'DM Sans',sans-serif;font-size:clamp(15px,1.05vw,20px);letter-spacing:.06em;padding:15px 46px 15px 16px;cursor:pointer;">
           <sc-for list="{{ guestOpts }}" as="o" hint-placeholder-count="6"><option value="{{ o }}">{{ o }}</option></sc-for>
         </select>
-        <svg width="14" height="8" viewBox="0 0 14 8" fill="none" stroke="#1a100b" stroke-width="1.5" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;"><path d="m1 1 6 6 6-6"></path></svg>
+        <svg width="14" height="8" viewBox="0 0 14 8" fill="none" stroke="#f6eee4" stroke-width="1.5" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;"><path d="m1 1 6 6 6-6"></path></svg>
       </span>
     </label>
     <label data-rv="100" style="display:flex;flex-direction:column;gap:12px;">
-      <span style="font-size:clamp(11px,.78vw,14px);letter-spacing:.16em;text-transform:uppercase;color:rgba(26,16,11,.62);">Date</span>
-      <span style="position:relative;display:block;border:1px solid rgba(26,16,11,.3);border-radius:10px;background:#fffdf9;transition:border-color .25s,box-shadow .25s;" style-hover="border-color:#e8541e;box-shadow:0 0 0 3px rgba(232,84,30,.16);">
-        <select value="{{ date }}" onChange="{{ setDate }}" style="appearance:none;-webkit-appearance:none;color-scheme:light;width:100%;background:transparent;border:0;outline:0;color:#1a100b;font-family:'DM Sans',sans-serif;font-size:clamp(15px,1.05vw,20px);letter-spacing:.06em;padding:15px 46px 15px 16px;cursor:pointer;">
+      <span style="font-size:clamp(11px,.78vw,14px);letter-spacing:.16em;text-transform:uppercase;color:rgba(246,238,228,.8);">Date</span>
+      <span style="position:relative;display:block;border:1px solid rgba(246,238,228,.5);border-radius:10px;background:rgba(246,238,228,.13);transition:border-color .25s,box-shadow .25s;" style-hover="border-color:#e8541e;box-shadow:0 0 0 3px rgba(232,84,30,.22);">
+        <select value="{{ date }}" onChange="{{ setDate }}" style="appearance:none;-webkit-appearance:none;color-scheme:dark;width:100%;background:transparent;border:0;outline:0;color:#fbf6ef;font-family:'DM Sans',sans-serif;font-size:clamp(15px,1.05vw,20px);letter-spacing:.06em;padding:15px 46px 15px 16px;cursor:pointer;">
           <sc-for list="{{ dateOpts }}" as="o" hint-placeholder-count="7"><option value="{{ o }}">{{ o }}</option></sc-for>
         </select>
-        <svg width="14" height="8" viewBox="0 0 14 8" fill="none" stroke="#1a100b" stroke-width="1.5" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;"><path d="m1 1 6 6 6-6"></path></svg>
+        <svg width="14" height="8" viewBox="0 0 14 8" fill="none" stroke="#f6eee4" stroke-width="1.5" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;"><path d="m1 1 6 6 6-6"></path></svg>
       </span>
     </label>
     <label data-rv="200" style="display:flex;flex-direction:column;gap:12px;">
-      <span style="font-size:clamp(11px,.78vw,14px);letter-spacing:.16em;text-transform:uppercase;color:rgba(26,16,11,.62);">Heure</span>
-      <span style="position:relative;display:block;border:1px solid rgba(26,16,11,.3);border-radius:10px;background:#fffdf9;transition:border-color .25s,box-shadow .25s;" style-hover="border-color:#e8541e;box-shadow:0 0 0 3px rgba(232,84,30,.16);">
-        <select value="{{ time }}" onChange="{{ setTime }}" style="appearance:none;-webkit-appearance:none;color-scheme:light;width:100%;background:transparent;border:0;outline:0;color:#1a100b;font-family:'DM Sans',sans-serif;font-size:clamp(15px,1.05vw,20px);letter-spacing:.06em;padding:15px 46px 15px 16px;cursor:pointer;">
+      <span style="font-size:clamp(11px,.78vw,14px);letter-spacing:.16em;text-transform:uppercase;color:rgba(246,238,228,.8);">Heure</span>
+      <span style="position:relative;display:block;border:1px solid rgba(246,238,228,.5);border-radius:10px;background:rgba(246,238,228,.13);transition:border-color .25s,box-shadow .25s;" style-hover="border-color:#e8541e;box-shadow:0 0 0 3px rgba(232,84,30,.22);">
+        <select value="{{ time }}" onChange="{{ setTime }}" style="appearance:none;-webkit-appearance:none;color-scheme:dark;width:100%;background:transparent;border:0;outline:0;color:#fbf6ef;font-family:'DM Sans',sans-serif;font-size:clamp(15px,1.05vw,20px);letter-spacing:.06em;padding:15px 46px 15px 16px;cursor:pointer;">
           <sc-for list="{{ timeOpts }}" as="o" hint-placeholder-count="8"><option value="{{ o }}">{{ o }}</option></sc-for>
         </select>
-        <svg width="14" height="8" viewBox="0 0 14 8" fill="none" stroke="#1a100b" stroke-width="1.5" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;"><path d="m1 1 6 6 6-6"></path></svg>
+        <svg width="14" height="8" viewBox="0 0 14 8" fill="none" stroke="#f6eee4" stroke-width="1.5" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;"><path d="m1 1 6 6 6-6"></path></svg>
       </span>
     </label>
-    <button data-rv="300" type="submit" style="grid-column:{{ bookBtnCol }};margin-top:{{ bookBtnMt }};justify-self:{{ bookBtnJ }};display:flex;align-items:center;gap:clamp(14px,1.4vw,24px);white-space:nowrap;background:none;border:0;padding:0 0 4px;cursor:pointer;color:#120804;font-family:'Bodoni Moda',serif;font-size:clamp(17px,1.5vw,30px);letter-spacing:-.01em;">{{ bookLabel }}<span style="width:62px;height:62px;border-radius:50%;background:#120804;display:flex;align-items:center;justify-content:center;transition:transform .3s;" style-hover="transform:scale(1.08);"><svg width="15" height="12" viewBox="0 0 15 12" fill="none" stroke="#f6eee4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h12M8.5 1.5 13 6l-4.5 4.5"></path></svg></span></button>
+    <button data-rv="300" type="submit" style="grid-column:{{ bookBtnCol }};margin-top:{{ bookBtnMt }};justify-self:{{ bookBtnJ }};display:flex;align-items:center;gap:clamp(14px,1.4vw,24px);white-space:nowrap;background:none;border:0;padding:0 0 4px;cursor:pointer;color:#fbf6ef;font-family:'Bodoni Moda',serif;font-size:clamp(17px,1.5vw,30px);letter-spacing:-.01em;">{{ bookLabel }}<span style="width:62px;height:62px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;transition:transform .3s;" style-hover="transform:scale(1.08);"><svg width="15" height="12" viewBox="0 0 15 12" fill="none" stroke="#120804" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h12M8.5 1.5 13 6l-4.5 4.5"></path></svg></span></button>
   </form>
 </section>
 
@@ -629,7 +629,7 @@ class Component extends DCLogic {
       bkRadius: (!m && !tb) ? '20px' : '0',
       bkPad: (!m && !tb) ? 'clamp(28px,3vh,38px) clamp(26px,2vw,34px)' : 'clamp(28px,4vh,52px) 3.6vw clamp(28px,4vh,48px)',
       bkGap: (!m && !tb) ? '20px' : '26px 2.4vw',
-      bkBorder: (!m && !tb) ? '1px solid rgba(255,255,255,.55)' : '1px solid rgba(255,255,255,.4)',
+      bkBorder: (!m && !tb) ? '1px solid rgba(246,238,228,.32)' : '1px solid rgba(246,238,228,.22)',
       bkShadow: (!m && !tb) ? '0 34px 90px rgba(0,0,0,.6)' : '0 -26px 70px rgba(0,0,0,.5)',
       bookCols: (m || !tb) ? 'minmax(0,1fr)' : 'repeat(2,minmax(0,1fr))',
       bookBtnCol: '1 / -1', bookBtnMt: (!m && !tb) ? '6px' : '8px',
