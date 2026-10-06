@@ -228,7 +228,7 @@
       </article>
     </sc-for>
   </div>
-  <a data-rv="100" href="#book" style="align-self:center;margin-top:clamp(40px,6vh,80px);display:flex;align-items:center;gap:24px;font-family:'Bodoni Moda',serif;font-size:clamp(18px,1.6vw,32px);letter-spacing:-.01em;">VOIR LA CARTE<span style="width:62px;height:62px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;transition:transform .3s;" style-hover="transform:scale(1.08);"><svg width="15" height="12" viewBox="0 0 15 12" fill="none" stroke="#120804" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h12M8.5 1.5 13 6l-4.5 4.5"></path></svg></span></a>
+  <a data-rv="100" href="#menu" style="align-self:center;margin-top:clamp(40px,6vh,80px);display:flex;align-items:center;gap:24px;font-family:'Bodoni Moda',serif;font-size:clamp(18px,1.6vw,32px);letter-spacing:-.01em;">VOIR LA CARTE<span style="width:62px;height:62px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;transition:transform .3s;" style-hover="transform:scale(1.08);"><svg width="15" height="12" viewBox="0 0 15 12" fill="none" stroke="#120804" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h12M8.5 1.5 13 6l-4.5 4.5"></path></svg></span></a>
 </section>
 
 <section id="book" ref="{{ rBok }}" data-screen-label="06 Book A Table" style="position:relative;width:100%;min-height:100vh;min-height:100svh;overflow:hidden;background:#0a0807;display:flex;flex-direction:column;justify-content:space-between;">
@@ -265,6 +265,12 @@
       </span>
     </label>
     <button data-rv="300" type="submit" style="grid-column:{{ bookBtnCol }};margin-top:{{ bookBtnMt }};justify-self:{{ bookBtnJ }};display:flex;align-items:center;gap:clamp(14px,1.4vw,24px);white-space:nowrap;background:none;border:0;padding:0 0 4px;cursor:pointer;color:#fbf6ef;font-family:'Bodoni Moda',serif;font-size:clamp(17px,1.5vw,30px);letter-spacing:-.01em;">{{ bookLabel }}<span style="width:62px;height:62px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;transition:transform .3s;" style-hover="transform:scale(1.08);"><svg width="15" height="12" viewBox="0 0 15 12" fill="none" stroke="#120804" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h12M8.5 1.5 13 6l-4.5 4.5"></path></svg></span></button>
+      <sc-if value="{{ booked }}" hint-placeholder-val="{{ false }}">
+        <div role="status" style="grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:4px;padding:16px 18px;border-radius:12px;border:1px solid rgba(232,84,30,.45);background:rgba(232,84,30,.12);">
+          <span style="font-size:14px;line-height:1.5;color:rgba(246,238,228,.92);">{{ bookRecap }} — appelez-nous pour confirmer votre table.</span>
+          <a href="tel:+33758256031" style="display:inline-flex;align-items:center;gap:10px;padding:11px 18px;border-radius:999px;background:#fbf6ef;color:#120804;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;letter-spacing:.06em;white-space:nowrap;"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#120804" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 11.3v2a1.3 1.3 0 0 1-1.5 1.3 13 13 0 0 1-5.6-2 12.8 12.8 0 0 1-4-4 13 13 0 0 1-2-5.7A1.3 1.3 0 0 1 2.7 1.3h2a1.3 1.3 0 0 1 1.3 1.2c.1.6.2 1.3.5 1.9a1.3 1.3 0 0 1-.3 1.4l-.9.9a10.7 10.7 0 0 0 4 4l.9-.9a1.3 1.3 0 0 1 1.4-.3c.6.3 1.2.4 1.9.5a1.3 1.3 0 0 1 1.1 1.3z"></path></svg>07 58 25 60 31</a>
+        </div>
+      </sc-if>
   </form>
 </section>
 
@@ -512,6 +518,7 @@ class Component extends DCLogic {
     this.smoothTo = y => { this._tgt = Math.max(0, Math.min(max(), y)); if (!this._sm) { this._cur = window.scrollY; this._sm = requestAnimationFrame(loop); } };
     this._wheel = e => {
       if (e.ctrlKey || e.defaultPrevented) return;
+      if (this.state.menu) { e.preventDefault(); return; }
       let t = e.target; while (t && t !== document.body) { if (t.tagName === 'SELECT') return; t = t.parentElement; }
       e.preventDefault();
       const dy = e.deltaMode === 1 ? e.deltaY * 40 : e.deltaMode === 2 ? e.deltaY * window.innerHeight : e.deltaY;
@@ -537,8 +544,9 @@ class Component extends DCLogic {
     this._kt = setInterval(this._kick, 1500);
     this.t = setInterval(() => this.setState(s => ({ left: s.left > 0 ? s.left - 1 : 115, left2: s.left2 > 0 ? s.left2 - 1 : 21599 })), 1000);
     window.addEventListener('scroll', this.onScroll, { passive: true });
-    this.toggleMenu = () => this.setState(st => { const v = !st.menu; document.body.style.overflow = v ? 'hidden' : ''; return { menu: v }; });
-    this.closeMenu = () => { document.body.style.overflow = ''; this.setState({ menu: false }); };
+    this._lock = v => { const ov = v ? 'hidden' : ''; document.body.style.overflow = ov; document.documentElement.style.overflow = ov; };
+    this.toggleMenu = () => this.setState(st => { const v = !st.menu; this._lock(v); return { menu: v }; });
+    this.closeMenu = () => { this._lock(false); this.setState({ menu: false }); };
     this._esc = e => { if (e.key === 'Escape' && this.state.menu) this.closeMenu(); };
     window.addEventListener('keydown', this._esc);
     this._rs = () => { clearTimeout(this._rst); this._rst = setTimeout(() => { if (window.innerWidth >= 760 && this.state.menu) this.closeMenu(); this.setState({ w: window.innerWidth }); this.onScroll(); }, 120); };
@@ -553,7 +561,7 @@ class Component extends DCLogic {
     if (this._blob) URL.revokeObjectURL(this._blob); clearInterval(this.t); clearInterval(this._kt);
     ['pointerdown', 'touchstart', 'scroll', 'keydown'].forEach(ev => window.removeEventListener(ev, this._kick));
     document.removeEventListener('visibilitychange', this._kick);
-    window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this._rs); window.removeEventListener('orientationchange', this._rs); window.removeEventListener('keydown', this._esc); document.body.style.overflow = ''; clearTimeout(this._rst);
+    window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this._rs); window.removeEventListener('orientationchange', this._rs); window.removeEventListener('keydown', this._esc); this._lock(false); clearTimeout(this._rst);
     if (this._io) this._io.disconnect(); clearInterval(this._revT);
     this.stopSynth(); if (this._audio) this._audio.pause(); clearInterval(this._fa);
     cancelAnimationFrame(this._sm); cancelAnimationFrame(this._qa);
@@ -602,9 +610,9 @@ class Component extends DCLogic {
     const OPEN = 18 * 60, LAST = 24 * 60 + 30;
     const slot = mn => pad(Math.floor(mn / 60) % 24) + ':' + pad(mn % 60);
     const allSlots = []; for (let mn = OPEN; mn <= LAST; mn += 30) allSlots.push(mn);
-    // avant 02:00 on est encore dans la soiree de la veille
-    let nowMin = now.getHours() * 60 + now.getMinutes(); if (nowMin < 120) nowMin += 1440;
-    const todaySlots = allSlots.filter(mn => mn >= nowMin + 60).map(slot);
+    // avant 17:00 (y compris juste apres minuit) toute la soiree du jour est encore devant nous
+    const nowMin = now.getHours() * 60 + now.getMinutes();
+    const todaySlots = (nowMin < 17 * 60 ? allSlots : allSlots.filter(mn => mn >= nowMin + 60)).map(slot);
 
     const MOIS = ['janv.', 'fevr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'aout', 'sept.', 'oct.', 'nov.', 'dec.'];
     const JOURS = ['dim.', 'lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.'];
@@ -703,7 +711,9 @@ class Component extends DCLogic {
       guestOpts: ['1 PERSONNE', '2 PERSONNES', '3 PERSONNES', '4 PERSONNES', '5 PERSONNES', '6 PERSONNES', '8 PERSONNES', '10+ PERSONNES'], dateOpts, timeOpts,
       setGuests: e => this.setState({ guests: e.target.value, booked: false }), setDate: e => this.setState({ date: e.target.value, booked: false }), setTime: e => this.setState({ time: e.target.value, booked: false }),
       onBook: e => { e.preventDefault(); this.setState({ booked: true }); },
-      bookLabel: this.state.booked ? 'DEMANDE ENVOYÉE' : 'RÉSERVER',
+      bookLabel: this.state.booked ? 'À CONFIRMER' : 'RÉSERVER',
+      booked: !!this.state.booked,
+      bookRecap: String(this.state.guests).toLowerCase() + ' · ' + dateSel + ' · ' + timeSel,
       stars: [1, 2, 3, 4, 5], reviews,
       prevReview: () => this.setState(st => ({ rev: (st.rev + 2) % 3 })), nextReview: () => this.setState(st => ({ rev: (st.rev + 1) % 3 })),
       expOrbX: ((exp - 0.5) * 80).toFixed(1) + 'px', expOrbY: ((exp - 0.5) * 140).toFixed(1) + 'px',
