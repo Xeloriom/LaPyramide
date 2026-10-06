@@ -11,12 +11,12 @@ https://unsplash.com/license
 Identifiants en place (section -> identifiant Unsplash) :
 
   02 Ambiance ............. photo-1781955781178-6ea29c66e860
-  04 Salon privé .......... photo-1574238919966-5cb3d9693a4b
-  05 Carte / Chicha ....... photo-1511302188604-d1d5ba206381
-  05 Carte / Le Bar ....... photo-1778104959337-5260c89e2293
-  05 Carte / Thé .......... photo-1555758933-42f41c02c82f
-  06 Réserver ............. photo-1681641092941-b1acee507ee0
-  07 Avis clients ......... photo-1790202557928-c341670f58f2
+  04 Salon privé .......... photo-1761828122995-5e3ba8d48c80
+  05 Carte / Chicha ....... photo-1729461119836-5ca69e675f70
+  05 Carte / Le Bar ....... photo-1621873495884-845a939892d1
+  05 Carte / Thé .......... photo-1646288401762-632357729f59
+  06 Réserver ............. photo-1552960226-639240203497
+  07 Avis clients ......... photo-1758903846703-9c70129885aa
 
 ATTENTION — les mentions « Photo by … » affichées sur les cartes de la
 carte ont été retirées : elles nommaient encore les photographes des
